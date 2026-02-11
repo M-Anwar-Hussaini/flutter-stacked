@@ -14,18 +14,48 @@ class CounterView extends StackedView<CounterViewModel> {
   ) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      body: Container(
-        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-        child: Center(child: Text("Current counter: ${viewModel.counter}")),
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 800),
+          child: Column(
+            mainAxisSize: .min,
+            crossAxisAlignment: .center,
+            children: [
+              Text(
+                'Counter is: ${viewModel.counter}',
+                style: const TextStyle(fontWeight: .bold, fontSize: 18),
+              ),
+
+              const SizedBox(height: 24),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: viewModel.decrement,
+                        label: const Text('Decrement'),
+                        icon: const Icon(Icons.remove),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: viewModel.increment,
+                        label: const Text('Increment'),
+                        icon: const Icon(Icons.add),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-      floatingActionButton:
-          FloatingActionButton(onPressed: viewModel.increment),
     );
   }
 
   @override
-  CounterViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      CounterViewModel();
+  CounterViewModel viewModelBuilder(BuildContext context) => CounterViewModel();
 }
