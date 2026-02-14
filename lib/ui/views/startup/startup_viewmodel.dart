@@ -11,7 +11,7 @@ class StartupViewModel extends BaseViewModel {
   // Place anything here that needs to happen before we get into the application
   Future runStartupLogic() async {
     if (_authenticationService.isLoggedIn) {
-      _navigationService.replaceWithHomeView();
+      _navigationService.replaceWithHomeView(firstIndex: 1);
     } else {
       _navigationService.replaceWithLoginView();
     }
