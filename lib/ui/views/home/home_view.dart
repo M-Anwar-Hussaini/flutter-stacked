@@ -6,7 +6,8 @@ import 'package:flutter_stacked/ui/common/ui_helpers.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key, required this.firstIndex}) : super(key: key);
+  final int firstIndex;
 
   @override
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
